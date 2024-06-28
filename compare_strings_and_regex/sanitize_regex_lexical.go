@@ -76,8 +76,6 @@ func parseBedTypeToLexical(bedTypeText string) []lexical {
 			tokenType = tokenBedType
 		} else if quantityTypeRegex.MatchString(lexem) {
 			tokenType = tokenQuantity
-		} else if checkStringInt(lexem) {
-			tokenType = tokenQuantity
 		} else {
 			continue
 		}
@@ -88,11 +86,4 @@ func parseBedTypeToLexical(bedTypeText string) []lexical {
 	}
 
 	return locLexical
-}
-
-func checkStringInt(text string) bool {
-	if _, err := strconv.Atoi(text); err != nil {
-		return false
-	}
-	return true
 }
