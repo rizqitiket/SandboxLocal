@@ -29,6 +29,12 @@ func BenchmarkSanitizer(b *testing.B) {
 		}
 	})
 
+	b.Run("Sanitize3Phase", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			Sanitize3Phase("1 Double or Twin")
+		}
+	})
+
 	// ===========USING SAMPLE DATA===============
 
 	b.Run("SanitizeManualPatternWithData", func(b *testing.B) {
@@ -47,13 +53,22 @@ func BenchmarkSanitizer(b *testing.B) {
 
 	b.Run("SanitizeRegexWithoutPatternWithData", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
+			idx = i % len(data)
 			SanitizeRegexWithoutPattern(data[idx])
 		}
 	})
 
 	b.Run("SanitizeRegexLexicalWithData", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
+			idx = i % len(data)
 			SanitizeRegexLexical(data[idx])
+		}
+	})
+
+	b.Run("Sanitize3PhaseWithData", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			idx = i % len(data)
+			Sanitize3Phase(data[idx])
 		}
 	})
 }
