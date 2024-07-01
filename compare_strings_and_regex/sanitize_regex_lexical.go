@@ -43,12 +43,13 @@ func getQuantityMapByBedType(lexicals []lexical) map[string]int {
 		if lexicals[i].token == tokenQuantity && lexicals[i+1].token == tokenBedType {
 			quantity, err := strconv.Atoi(lexicals[i].lexemes)
 			if err != nil {
+				result[lexicals[i].lexemes] += 1
 				continue
 			}
 			result[lexicals[i+1].lexemes] += quantity
 			i += 1
 		} else if lexicals[i].token == tokenBedType {
-			result[lexicals[i+1].lexemes] += 1
+			result[lexicals[i].lexemes] += 1
 		}
 	}
 
@@ -72,7 +73,7 @@ func parseBedTypeToLexical(bedTypeText string) []lexical {
 	var tokenType tokenType
 	splitBedType := strings.Split(bedTypeText, " ")
 	for _, lexem := range splitBedType {
-		if bedTypeRegex.MatchString(lexem) {
+		if regBedType.MatchString(lexem) {
 			tokenType = tokenBedType
 		} else if quantityTypeRegex.MatchString(lexem) {
 			tokenType = tokenQuantity

@@ -8,11 +8,11 @@ import (
 )
 
 var (
-	bedTypeRegex, _ = regexp.Compile("double|twin|single|king|semi-double|round|queen|sofa|tatami|kang|dorm|water|bunk")
+	regBedType, _ = regexp.Compile("double|twin|single|king|semi-double|round|queen|sofa|tatami|kang|dorm|water|bunk")
 )
 
 func SanitizeRegexPattern(text string) map[string]int {
-	if bedTypeRegex.MatchString(strings.ToLower(text)) {
+	if regBedType.MatchString(strings.ToLower(text)) {
 		splittedText := strings.Split(text, " ")
 		if len(splittedText) == 1 {
 			return map[string]int{splittedText[0]: 1}

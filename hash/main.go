@@ -3,6 +3,8 @@ package main
 import (
 	"crypto/md5"
 	"fmt"
+
+	"github.com/samber/lo"
 )
 
 func main() {
@@ -23,6 +25,17 @@ func main() {
 	}
 
 	fmt.Println(hash)
+	testString := []string{}
+	curr := map[string]any{"a": nil, "b": nil}
+	_, r := lo.Find[string](testString, func(item string) bool {
+		if _, ok := curr[item]; ok {
+			return false
+		}
+		return true
+	})
+
+	fmt.Println(r)
+
 }
 
 func ComputeHash(b map[string]string) string {

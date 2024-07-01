@@ -85,7 +85,7 @@ func NewRoomTPAExtensionCombine(bedTypeList []map[string]string) *defaultRoomTPA
 	quantityMapByBedType := map[string]int{}
 	for _, bedType := range bedTypeList {
 		lowerText := strings.ToLower(bedType["en"])
-		if !bedTypeRegex.MatchString(lowerText) {
+		if !regBedType.MatchString(lowerText) {
 			continue
 		}
 		// strings.Split guaranteed to return slice with length at least 1
@@ -143,7 +143,7 @@ func NewRoomTPAExtensionRegex(bedTypeList []map[string]string) *defaultRoomTPAEx
 	quantityMapByBedType := map[string]int{}
 	for _, bedType := range bedTypeList {
 		lowerText := strings.ToLower(bedType["en"])
-		if !bedTypeRegex.MatchString(lowerText) {
+		if !regBedType.MatchString(lowerText) {
 			continue
 		}
 		// strings.Split guaranteed to return slice with length at least 1
@@ -201,7 +201,7 @@ func NewRoomTPAExtensionRegex2(bedTypeList []map[string]string) *defaultRoomTPAE
 	quantityMapByBedType := map[string]int{}
 	for _, bedType := range bedTypeList {
 		lowerText := strings.ToLower(bedType["en"])
-		if !bedTypeRegex.MatchString(lowerText) {
+		if !regBedType.MatchString(lowerText) {
 			continue
 		}
 
